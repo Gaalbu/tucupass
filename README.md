@@ -60,7 +60,7 @@ Sem `RESEND_API_KEY` os e-mails não saem em produção (adapter Local).
 
 - [x] Nome definido: Tucupass
 - [x] Material de entrega para o Devs Norte em `entrega/` (campos do formulário, descrição e prints)
-- [ ] Publicar o repositório no GitHub e usar a URL no formulário
+- [x] Repositório publicado: https://github.com/Gaalbu/tucupass
 - [ ] Deploy no Fly + domínio de remetente no Resend (só se decidir hospedar; hoje sem custo)
 - [ ] Testar scanner em celular real, luz baixa e rede ruim (sem modo offline ainda)
 - [ ] Combinar com a organização do meetup e operar a entrada

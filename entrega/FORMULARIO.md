@@ -12,10 +12,10 @@ Inscrição, ingresso com QR e check-in ao vivo para eventos de comunidade, com 
 Web · Eventos · Comunidade
 
 **URL do Projeto**
-URL do repositório no GitHub (preencher quando o repositório for publicado; ver pendências).
+https://github.com/Gaalbu/tucupass
 
 **Contato**
-Preencher e-mail e/ou WhatsApp que o Manito quiser divulgar.
+Email de Contato: gabrielalbuquerquealencar@gmail.com
 
 **Não sou colaborador, estou apenas divulgando**
 Não marcar (o projeto é seu).
