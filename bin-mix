@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Roda mix dentro do container de dev (sem Elixir local): ./bin-mix test
+cd "$(dirname "$0")"
+export UID GID=$(id -g)
+[ "$1" = "test" ] || [ "$1" = "precommit" ] && export MIX_ENV=test
+exec docker compose run --rm -T dev mix "$@"

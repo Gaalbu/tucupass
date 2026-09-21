@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="acai">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="Tucupass" suffix=" · Tucupass" phx-no-format>{assigns[:page_title]}</.live_title>
+    <meta
+      name="description"
+      content="Inscrição, ingresso com QR e check-in ao vivo para eventos de comunidade. Demo pública rodando agora."
+    />
+    <meta
+      property="og:title"
+      content="Tucupass — check-in ao vivo para eventos de comunidade"
+    />
+    <meta
+      property="og:description"
+      content="Inscreva-se no evento demo, abra o ingresso e veja o painel mudar na hora."
+    />
+    <link rel="icon" type="image/svg+xml" href={~p"/favicon.svg"} />
+    <meta name="theme-color" content="#1a0d1c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    </script>
+  </head>
+  <body>
+    {@inner_content}
+  </body>
+</html>

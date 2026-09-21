@@ -1,0 +1,221 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@import "phoenix-colocated/tucupass/colocated.css";
+@source "../css";
+@source "../js";
+@source "../../lib/tucupass_web";
+/* Required for Tailwind to automatically pick up changes in colocated CSS files in dev */
+@source "../../_build/dev/phoenix-colocated/tucupass/*/";
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* daisyUI Tailwind Plugin. */
+@plugin "daisyui/packages/bundle/daisyui" {
+  themes: false;
+}
+
+/* Uma identidade só: açaí escuro, papel de canhoto, amarelo-tucupi.
+   Cantos retos de propósito (ingresso não tem radius). */
+@plugin "daisyui/packages/bundle/daisyui-theme" {
+  name: "acai";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(21% 0.055 320);
+  --color-base-200: oklch(17% 0.045 320);
+  --color-base-300: oklch(28% 0.07 320);
+  --color-base-content: oklch(94% 0.025 85);
+  --color-primary: oklch(85% 0.17 88);
+  --color-primary-content: oklch(20% 0.04 320);
+  --color-secondary: oklch(72% 0.15 160);
+  --color-secondary-content: oklch(18% 0.04 160);
+  --color-accent: oklch(85% 0.17 88);
+  --color-accent-content: oklch(20% 0.04 320);
+  --color-neutral: oklch(28% 0.07 320);
+  --color-neutral-content: oklch(94% 0.025 85);
+  --color-info: oklch(75% 0.09 230);
+  --color-info-content: oklch(18% 0.03 230);
+  --color-success: oklch(72% 0.15 160);
+  --color-success-content: oklch(18% 0.04 160);
+  --color-warning: oklch(80% 0.16 70);
+  --color-warning-content: oklch(20% 0.04 70);
+  --color-error: oklch(66% 0.2 28);
+  --color-error-content: oklch(97% 0.01 28);
+  --radius-selector: 0;
+  --radius-field: 0;
+  --radius-box: 0;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root {
+  --acai-950: oklch(14% 0.04 320);
+  --acai-900: oklch(17% 0.045 320);
+  --acai-800: oklch(21% 0.055 320);
+  --acai-700: oklch(28% 0.07 320);
+  --papel: oklch(93% 0.035 85);
+  --tinta: oklch(20% 0.04 320);
+  --tinta-suave: oklch(42% 0.04 320);
+  --tucupi: oklch(85% 0.17 88);
+  --vitoria: oklch(72% 0.15 160);
+  --urucum: oklch(66% 0.2 28);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html, body { overflow-x: clip; }
+body {
+  background: var(--acai-950);
+  color: var(--papel);
+  font-family: var(--font-sans);
+  /* grão discreto: papel de gráfica, não gradiente de landing */
+  background-image: radial-gradient(oklch(100% 0 0 / 0.035) 1px, transparent 1px);
+  background-size: 5px 5px;
+}
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.005em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.mono { font-family: var(--font-mono); }
+a { text-underline-offset: 0.2em; }
+
+/* ---------- canhoto ---------- */
+.stub {
+  --qr: clamp(7.5rem, 34%, 13rem);
+  --cut: calc(100% - var(--qr));
+  --notch: 0.85rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--qr);
+  background: var(--papel);
+  color: var(--tinta);
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at var(--cut) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at var(--cut) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at var(--cut) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at var(--cut) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+}
+.stub::after {
+  content: "";
+  position: absolute;
+  inset-block: var(--notch);
+  left: var(--cut);
+  border-left: 2px dashed oklch(20% 0.04 320 / 0.35);
+}
+.stub__main { padding: 1.5rem 2.25rem 1.5rem 1.75rem; min-width: 0; }
+.stub__side {
+  padding: 1rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+  min-width: 0;
+}
+.stub__side svg { width: 100%; height: auto; display: block; }
+.stub h1, .stub h2 { color: var(--tinta); }
+.stub .label {
+  font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--tinta-suave); overflow-wrap: anywhere; white-space: normal;
+}
+.stub--tucupi { background: var(--tucupi); }
+.stub--tucupi .label { color: oklch(30% 0.06 88); }
+
+/* ---------- botões e campos ---------- */
+.cta {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--tucupi); color: var(--tinta);
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  font-size: 1.35rem; line-height: 1; letter-spacing: 0.02em;
+  padding: 0.9rem 1.4rem; white-space: nowrap; text-decoration: none;
+  border: 2px solid var(--tucupi);
+  box-shadow: 5px 5px 0 var(--acai-700);
+  transition: transform 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+}
+.cta:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--acai-700); }
+.cta:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--acai-700); }
+.cta:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--vitoria); outline-offset: 3px;
+}
+.cta--ghost { background: transparent; color: var(--papel); border-color: var(--papel); box-shadow: none; }
+.cta--ghost:hover { background: var(--papel); color: var(--tinta); box-shadow: none; }
+
+/* ---------- painel ao vivo ---------- */
+.board { border: 2px solid var(--papel); background: var(--acai-900); }
+.board__head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; align-items: center;
+  padding: 0.6rem 1rem; border-bottom: 2px solid var(--papel);
+  font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.board__live { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--tucupi); }
+.board__live::before {
+  content: ""; width: 0.6rem; height: 0.6rem; background: var(--urucum);
+  animation: blink 1.4s steps(2, jump-none) infinite;
+}
+.board__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+.board__cell { padding: 1rem 1.25rem; border-right: 2px solid oklch(94% 0.025 85 / 0.18); min-width: 0; }
+.board__cell:last-child { border-right: 0; }
+.board__num {
+  font-family: var(--font-display); font-weight: 900; line-height: 0.85;
+  font-size: clamp(3.5rem, 11vw, 7rem); font-variant-numeric: tabular-nums;
+}
+.board__num--rate { font-size: clamp(2.75rem, 8vw, 5.25rem); padding-top: 0.15em; }
+.board__num--hot { color: var(--tucupi); }
+.board__label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; }
+.ticks { display: grid; grid-template-columns: repeat(auto-fill, minmax(0.7rem, 1fr)); gap: 3px; padding: 1rem 1.25rem; border-top: 2px solid oklch(94% 0.025 85 / 0.18); }
+.tick { aspect-ratio: 1; background: var(--acai-700); }
+.tick--on { background: var(--tucupi); }
+.arrivals { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--papel); }
+.arrival {
+  display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 1.25rem;
+  border-bottom: 1px dashed oklch(94% 0.025 85 / 0.25);
+  font-family: var(--font-mono); font-size: 0.9rem;
+}
+.arrival--new { animation: arrive 600ms var(--ease-out); }
+.arrival span:first-child { overflow-wrap: anywhere; min-width: 0; }
+.arrival time { opacity: 0.6; white-space: nowrap; }
+
+@keyframes arrive { from { background: var(--tucupi); color: var(--tinta); transform: translateX(-12px); } }
+@keyframes blink { 50% { opacity: 0.15; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+.rise { animation: rise 700ms var(--ease-out) both; }
+.rise-2 { animation-delay: 120ms; }
+.rise-3 { animation-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .arrival--new, .rise, .board__live::before { animation: none; }
+  .cta { transition: none; }
+}
+
+@media (max-width: 40rem) {
+  .board__cell { border-right: 0; border-bottom: 2px solid oklch(94% 0.025 85 / 0.18); }
+  .board__cell:last-child { border-bottom: 0; }
+}
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Use the data attribute for dark mode  */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* This file is for your main application CSS */
